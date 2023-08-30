@@ -1,0 +1,45 @@
+body, th, td{
+
+    background-color: #111111;
+	color : #ffffff;
+	font-family: "Consolas";
+}
+
+td{
+	padding-left: 10px;
+}
+
+#artwork {
+
+    height: 120px;
+    width: 120px;
+    background-color: #333333;
+	border-radius:10px;
+}
+
+#name{
+    text-transform: uppercase;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#type{
+    text-transform: uppercase;
+}
+
+h2{
+    background-color: #90e0ef;
+    width: fit-content;
+    padding:10px;
+    text-transform: uppercase;
+}
+
+#id{
+    font-size: 20px;
+}
+
+#stats{
+    background-color:rgb(74, 74, 255);
+    text-align: center;
+    text-transform: uppercase;
+}

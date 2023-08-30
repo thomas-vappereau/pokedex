@@ -1,0 +1,99 @@
+let pokearray = document.getElementById("pokearray")
+let pokelist = []
+let types = []
+
+function recherche() {
+
+    let saisi = document.getElementById("recherche").value
+    console.log(saisi)
+    axios.get("https://pokeapi.co/api/v2/pokemon/" + saisi).then(function (result) {
+        console.log(result.data.name)
+        nom.innerHTML = result.data.name
+        image.setAttribute("src", result.data.sprites.other["official-artwork"].front_default)
+        type.innerHTML = result.data.types[0].type.name
+        number.innerHTML = result.data.id
+        console.log(result)
+
+    }
+
+    )
+}
+
+async function getPokemons() {
+    let result = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=898")
+    console.log(result)
+    console.log(pokelist)
+    let promises = []
+    result.data.results.map(function (pokemon) {
+        promises.unshift(axios.get("https://pokeapi.co/api/v2/pokemon/" + pokemon.name))
+
+    })
+    pokelist = await Promise.all(promises)
+    console.log(pokelist)
+}
+
+function renderPokemon(poketableau) {
+
+    poketableau.map(function (result) {
+        let affichage =
+            `<tr>
+            <td><img id="artwork" src=${result.data.sprites.other["official-artwork"].front_default}></td>
+            <td id="nom">${result.data.name}</td>
+            <td id="number">${result.data.id}</td>
+            <td> 
+            <table>
+            <tr>
+                <td>
+                ${getTypes(result.data.types)}
+                </td>
+            </tr>
+            </table></td>
+            <td>
+            <table>
+            <tr>
+              <td id="stat">HP</td>
+              <td id="stats">Attack</td>
+              <td id="stat">Defense</td>
+            </tr>
+            <tr>
+              <td id="stat_number">${result.data.stats[0].base_stat}</td>
+              <td id="stat_numbers">${result.data.stats[1].base_stat}</td>
+              <td id="stat_number">${result.data.stats[2].base_stat}</td>
+            </tr>
+            <tr>
+              <td id="stat">Speed</td>
+              <td id="stats">Special Attack</td>
+              <td id="stat">Special Defense</td>
+            </tr>
+            <tr>
+              <td id="stat_number">${result.data.stats[5].base_stat}</td>
+              <td id="stat_numbers">${result.data.stats[3].base_stat}</td>
+              <td id="stat_number">${result.data.stats[4].base_stat}</td>
+            </tr>
+          </table>
+            </td>
+        </tr>`
+        pokearray.insertAdjacentHTML('afterbegin', affichage);
+    })
+}
+
+function getTypes(types) {
+
+    let a = ""
+
+    types.map(function (type) {
+        a = a + `<td id="type">${type.type.name}</td>`
+    })
+    return a
+}
+
+
+let bouton = document.getElementById("bouton")
+bouton.addEventListener("click", recherche)
+async function run() {
+    await getPokemons()
+    renderPokemon(pokelist)
+}
+
+run()
+
