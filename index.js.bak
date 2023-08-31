@@ -37,10 +37,6 @@ function renderPokemon(poketableau) {
 		let ID = result.data.id;
 		let IMG = result.data.sprites.other["official-artwork"].front_default;
 		
-		if(ID == 108){
-			IMG = 'antoine.png';
-		}
-		
 		let types = getTypes(result.data.types);
 
 		let TYPES = '';
