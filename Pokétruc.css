@@ -23,23 +23,27 @@ td{
 	font-size: 20px;
 }
 
-#type{
-    text-transform: uppercase;
-}
-
-h2{
-    background-color: #90e0ef;
-    width: fit-content;
-    padding:10px;
-    text-transform: uppercase;
-}
-
 #id{
     font-size: 20px;
 }
 
-#stats{
-    background-color:rgb(74, 74, 255);
-    text-align: center;
+#type{
     text-transform: uppercase;
+}
+
+#shiny {
+
+    height: 120px;
+    width: 120px;
+    background-color: #fffabc;
+	border-radius:10px;
+}
+
+.type{
+	height: 20px;
+	width: auto;
+}
+
+.stat-label{
+	text-align: right;
 }
